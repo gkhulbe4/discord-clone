@@ -1,7 +1,6 @@
 import currentUser from "@/lib/current-user";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
-import { redirect } from 'next/navigation'
 
 export async function PATCH(req: Request , {params}: {params: {inviteCode: string}}) {
     const profile = await currentUser();
@@ -19,7 +18,7 @@ export async function PATCH(req: Request , {params}: {params: {inviteCode: strin
               },
             },
           });
-        return redirect("/")
+          return new NextResponse("Successfully invited", {status: 200})
     } catch (error) {
       console.log("SERVER_ID" , error)
       return new NextResponse("Internal Error" , {status: 500})

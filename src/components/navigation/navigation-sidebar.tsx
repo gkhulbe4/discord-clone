@@ -26,11 +26,11 @@ async function NavigationSidebar() {
   });
   
   return (
-    <div className="space-y-4 justify-between flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] bg-[#E3E5E8] py-3">
+    <div className="space-y-7 justify-between flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] bg-[#E3E5E8] py-3">
       <div className="flex flex-col space-y-4">
       <NavigationAction />
       <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto"/>
-      <ScrollArea>
+      <ScrollArea className="max-h-[470px]">
         {servers.map((server) => (
             <div key={server.id} className="mb-4">
                 <NavigationItem name={server.name} id={server.id} imageUrl={server.imageUrl}/>
