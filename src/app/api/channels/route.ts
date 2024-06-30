@@ -18,6 +18,7 @@ export async function POST(req: Request) {
     if (name === "general") {
       return new NextResponse("Name cannot be general", { status: 400 });
     }
+    console.log("helloos");
     const server = await db.server.update({
       where: {
         id: serverId,
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
           some: {
             profileId: profile.id,
             role: {
-              in: [MemberRole.ADMIN || MemberRole.MODERATOR],
+              in: [MemberRole.ADMIN, MemberRole.MODERATOR],
             },
           },
         },

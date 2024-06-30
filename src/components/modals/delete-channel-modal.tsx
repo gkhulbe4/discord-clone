@@ -13,7 +13,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
-import { ServerWithMembersWithProfiles } from "../../../types";
+import qs from "query-string";
 
 export const DeleteChannelModal = () => {
   const { onOpen, isOpen, onClose, type, data } = useModal();
@@ -25,7 +25,13 @@ export const DeleteChannelModal = () => {
   const onClick = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/servers/${server?.id}`);
+      const url = qs.stringifyUrl({
+        url: `/api/channels/${channel?.id}`,
+        query: {
+          serverId: server?.id,
+        },
+      });
+      await axios.delete(url);
       onClose();
       router.refresh();
     } catch (error) {
